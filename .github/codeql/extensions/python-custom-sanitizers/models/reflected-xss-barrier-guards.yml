@@ -1,0 +1,7 @@
+extensions:
+  - addsTo:
+      pack: codeql/python-all
+      extensible: barrierGuardModel
+    data:
+      - ["re", "Member[match].Argument[1,string:]", "true", "html-injection"]
+      - ["re", "Member[match].Argument[1,string:]", "true", "js-injection"]
