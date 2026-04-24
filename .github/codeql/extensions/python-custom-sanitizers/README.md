@@ -14,6 +14,20 @@ The model is scoped to XSS-relevant kinds used by `py/reflective-xss`:
 - `qlpack.yml`
 - `models/reflected-xss-barrier-guards.yml`
 
+## Create a CodeQL Database
+
+Create a new CodeQL database from the project source code:
+
+```bash
+codeql database create db-python --language=python
+```
+
+To overwrite an existing database, use the `--overwrite` flag:
+
+```bash
+codeql database create db-python --language=python --overwrite
+```
+
 ## Analyze with CodeQL CLI
 
 ```bash

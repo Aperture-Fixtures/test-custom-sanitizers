@@ -3,5 +3,5 @@ extensions:
       pack: codeql/python-all
       extensible: barrierGuardModel
     data:
-      - ["re", "Member[match].Argument[1,string:]", "true", "html-injection"]
-      - ["re", "Member[match].Argument[1,string:]", "true", "js-injection"]
+      - ["validators", "Member[is_valid_file_id].Argument[0]", "true", "html-injection"]
+      - ["validators", "Member[is_valid_file_id].Argument[0]", "true", "js-injection"]

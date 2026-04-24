@@ -2,6 +2,7 @@ import re
 from http import HTTPStatus
 
 from flask import Flask, request
+import validators
 
 app = Flask(__name__)
 
@@ -29,6 +30,23 @@ def restore():
 
     return content, HTTPStatus.OK
 
+@app.route('/rejuvinate', methods=['POST'])
+def rejuvinate():
+    data = request.get_json()
+    file_id = data['file_id']
+    if not validators.is_valid_file_id(file_id):
+        return 'Invalid file_id!', HTTPStatus.BAD_REQUEST
+
+    file_path = 'resources/' + file_id
+
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+    except FileNotFoundError as e:
+        app.logger.error(e)
+        return f'Unable to locate file_id {file_id}!', HTTPStatus.NOT_FOUND
+
+    return content, HTTPStatus.OK
 
 if __name__ == "__main__":
     app.run(debug=True)
